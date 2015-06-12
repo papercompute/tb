@@ -283,6 +283,118 @@ console.log(x.hasOwnProperty('name'),x.hasOwnProperty('age'),x.hasOwnProperty('i
 // 4. not 1-3
 })();
 
+// 3. Loops, control flow
+
+console.log("3. Loops, control flow");
+
+// Question 3.1 condition operator if
+(function(){
+
+var x;
+
+if(typeof x=="undefined"){
+ x=null;
+}else if(typeof x=="object"){
+ x=1;
+}else{
+ x="undefined"
+}
+
+console.log(typeof x, x);
+// Answers
+// 1. number 1
+// 2. string undefined
+// 3. object "undefined"
+// 4. object null *
+})();
+
+
+// Question 3.2 condition operator ?
+(function(){
+
+var x;
+
+x = x==undefined ? null : "";
+
+console.log(typeof x, x);
+// Answers
+// 1. object null *
+// 2. string null
+// 3. object ""
+// 4. string ""
+})();
+
+// Question 3.3 for loop
+(function(){
+
+const N=3;
+var x = x || 1;
+
+for(var i=0;i<N;i++){
+ if(i%2){continue;}
+ if(i%3){break;}
+ x++;
+}
+
+console.log(typeof x, x);
+// Answers
+// 1. number 1
+// 2. undefined NaN
+// 3. number 2 *
+// 4. number NaN
+})();
+
+// Question 3.4 while loop
+(function(){
+
+const N=3;
+var x=[];
+
+var i=0;while(i<N){
+ if (!!x){
+   x.push(i)
+ }
+ ++i;
+}
+
+console.log(typeof x, x);
+// Answers
+// 1. number [1,2,3]
+// 2. object [0,1,2]*
+// 3. object  [0,1,2]
+// 4. number NaN
+})();
+
+// Question 3.5 switch operator
+(function(){
+const LI="login";
+const LO="logout";
+const RR="register";
+const PF="profile";
+const DF="default"
+const BS="/api/v1/"
+var x=[BS+LI,BS+LO,BS+RR,BS+PF];
+var st={};
+for(i in x){
+ if(Math.random()>0.75)
+ switch (x[i].substring(BS.length)){
+  case LI:st[LI]=st[LI]+1 || 1;break;
+  case LO:st[LO]=st[LO]+1 || 1;break;
+  case RR:st[RR]=st[RR]+1 || 1;break;
+  case PF:st[PF]=st[PF]+1 || 1;break;
+  default: st[DF]=st[DF]+1 || 1;
+ } 
+}
+
+
+console.log(typeof st, st[LI]+st[LO]+st[RR]+st[PF]);
+// Answers
+// 1. number 1
+// 2. object 1
+// 3. object NaN *
+// 4. number NaN
+})();
+
 </script>
 </html>
 
