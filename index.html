@@ -300,7 +300,7 @@ if(typeof x=="undefined"){
  x="undefined"
 }
 
-console.log(typeof x, x);
+console.log("3.1",typeof x, x);
 // Answers
 // 1. number 1
 // 2. string undefined
@@ -316,7 +316,7 @@ var x;
 
 x = x==undefined ? null : "";
 
-console.log(typeof x, x);
+console.log("3.2",typeof x, x);
 // Answers
 // 1. object null *
 // 2. string null
@@ -324,7 +324,23 @@ console.log(typeof x, x);
 // 4. string ""
 })();
 
-// Question 3.3 for loop
+
+// Question 3.3 falsy values
+(function(){
+
+var x = [false, undefined, null, 0, NaN, ""];
+
+x = x[Math.round(Math.random()*x.length)] ? null : "";
+
+console.log("3.3",typeof x, x);
+// Answers
+// 1. object ""
+// 2. object null
+// 3. undefined null
+// 4. string "" *
+})();
+
+// Question 3.4 for loop
 (function(){
 
 const N=3;
@@ -336,7 +352,7 @@ for(var i=0;i<N;i++){
  x++;
 }
 
-console.log(typeof x, x);
+console.log("3.4",typeof x, x);
 // Answers
 // 1. number 1
 // 2. undefined NaN
@@ -344,7 +360,7 @@ console.log(typeof x, x);
 // 4. number NaN
 })();
 
-// Question 3.4 while loop
+// Question 3.5 while loop
 (function(){
 
 const N=3;
@@ -357,15 +373,15 @@ var i=0;while(i<N){
  ++i;
 }
 
-console.log(typeof x, x);
+console.log("3.5",typeof x, x);
 // Answers
 // 1. number [1,2,3]
 // 2. object [0,1,2]*
-// 3. object  [0,1,2]
+// 3. object  [0,1]
 // 4. number NaN
 })();
 
-// Question 3.5 switch operator
+// Question 3.6 switch operator
 (function(){
 const LI="login";
 const LO="logout";
@@ -385,15 +401,78 @@ for(i in x){
   default: st[DF]=st[DF]+1 || 1;
  } 
 }
-
-
-console.log(typeof st, st[LI]+st[LO]+st[RR]+st[PF]);
+console.log("3.6",typeof st, st[LI]+st[LO]+st[RR]+st[PF]);
 // Answers
 // 1. number 1
-// 2. object 1
+// 2. object 2 *
 // 3. object NaN *
 // 4. number NaN
 })();
+
+
+// Question 3.7 condition with Boolean
+(function(){
+
+var x = new Boolean(false);
+var n=0;
+if (x){ n++;}else{ --n;}
+if (x == true){ n++;}else{ --n;}
+console.log("3.7",typeof x, n);
+// Answers
+// 1. boolean true
+// 2. boolean false
+// 3. object 1
+// 4. object 0 *
+})();
+
+// Question 3.8 condition with assignment
+(function(){
+
+var x = true;
+var n=0;
+if (x=n ){ n++;}else{ --n;}
+console.log("3.8",typeof x, n);
+// Answers
+// 1. boolean 1
+// 2. boolean 0
+// 3. number 1
+// 4. number -1*
+})();
+
+
+// Question 3.9 condition with Boolean
+(function(){
+
+var st=[ 0, -0, null, false, NaN, -NaN, undefined,""];
+var x = new Boolean(st[Math.round(Math.random()*st.length)]);
+var n=0;
+if (x){ n++;}else{ --n;}
+
+console.log("3.9",typeof x,n);
+// Answers
+// 1. boolean 1
+// 2. boolean 0
+// 3. object 1*
+// 4. object -1
+})();
+
+
+// Question 3.10 do while loop
+(function(){
+var st=[ 1, -1, true,"1","true"];
+var x=0;
+do {
+  var i=st[Math.round(Math.random()*st.length)];
+  if(i) x++;
+} while (!i);
+console.log("3.10",typeof x,x);
+// Answers
+// 1. number 1*
+// 2. number 0
+// 3. object 1
+// 4. object 0
+})();
+
 
 </script>
 </html>
