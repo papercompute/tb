@@ -5,6 +5,8 @@
 </body>
 <script>
 
+// https://developer.mozilla.org/en-US/docs/Web/JavaScript/Guide/
+
 // 1. Objects, variables, scope
 
 console.log("1. Objects, variables, scope");
@@ -471,6 +473,250 @@ console.log("3.10",typeof x,x);
 // 2. number 0
 // 3. object 1
 // 4. object 0
+})();
+
+
+// 4. Exceptions
+console.log("4. Exceptions");
+
+// Question 4.1 try catch
+(function(){
+var st=[ "alpha", "beta", "gamma" ];
+var x;
+try{
+ if(st[x]==undefined || st[x]==null){x=x.toString();}
+}
+catch(e){
+ x=e;
+}
+console.log("4.1",typeof x);
+// Answers
+// 1. undefined
+// 2. null
+// 3. string
+// 4. object *
+})();
+
+
+// Question 4.2 throw 
+(function(){
+var st=[ "alpha", "beta", "gamma" ];
+var x;
+try{
+ throw false;
+}
+catch(e){
+ x=e;
+}
+console.log("4.2",typeof x);
+// Answers
+// 1. undefined
+// 2. boolean*
+// 3. string
+// 4. object
+})();
+
+
+// Question 4.3 nested try catch 
+(function(){
+var x;
+try{
+ try{
+  throw "Error";
+ }
+ catch(e){
+  throw e+"!";
+ }
+}
+catch(e){
+ x=e;
+}
+console.log("4.3",typeof x);
+// Answers
+// 1. undefined
+// 2. null
+// 3. string *
+// 4. object
+})();
+
+
+// Question 4.4 try catch finally
+(function(){
+
+function f() {
+  try {
+    throw "Hellow";
+  } catch(e) {
+    return true;
+  } finally {
+    return new Boolean(false);
+  }
+}
+var x=f();
+console.log("4.4",typeof x,x==false);
+// Answers
+// 1. undefined false
+// 2. boolean true
+// 3. string true
+// 4. object true *
+})();
+
+
+
+// Question 4.5 throw
+(function(){
+
+function f(p) {
+  if (p) {
+    throw (new Error('Error'));
+  } else {
+    if(typeof p == number){
+      p=p/0;
+    }
+  }
+}
+var x;
+try {
+  x=f(1);
+}
+catch (e) {
+  x=e;
+}
+
+console.log("4.5",typeof x, x.name === x.message);
+// Answers
+// 1. boolean false
+// 2. boolean true
+// 3. object undefined
+// 4. object true *
+})();
+
+
+// Question 4.6 try catch
+(function(){
+var x=false;
+function f(p) {
+ if(typeof p=='object'){ 
+  throw 1;
+ } 
+}
+
+try {
+  setTimeout(f(x),1000);
+}
+catch (e) {
+  x=e;
+}
+
+console.log("4.6",typeof x, x);
+// Answers
+// 1. boolean false *
+// 2. boolean true
+// 3. undefined undefined
+// 4. object true
+})();
+
+
+// Question 4.7 try catch after timeout
+(function(){
+
+var x=true;
+function f(p) {
+  throw p+"1";
+}
+
+try {
+  setTimeout(f,10,x);
+}
+catch (e) {
+  x=e;
+}
+
+console.log("4.7",typeof x, x);
+// Answers
+// 1. boolean false
+// 2. boolean true *
+// 3. undefined undefined
+// 4. object true
+})();
+
+
+// Question 4.8 try catch wrapper
+(function(){
+var x;
+function tryFun(wr, cb) {
+    wr(function(f) {
+        return function() {
+            try {
+                f(); 
+            } catch(e) {
+                cb(e);
+            }
+        };
+    });
+}
+
+function throwFun() {
+    throw new Error("Error");
+}
+
+tryFun(function(cf) { setTimeout( cf(throwFun), 1); }, function(e) {  x=e });
+
+setTimeout(function(){console.log("4.8",typeof x, x.name == x.message);}, 2);
+
+// Answers
+// 1. boolean false
+// 2. boolean true
+// 3. undefined undefined
+// 4. object true *
+})();
+
+
+// Question 4.9 try catch type
+(function(){
+var x;
+
+try{
+throw { type: "check", message: "Hello" }
+}
+catch(e){
+ switch(e.type){
+  case "check": x=e.message; break;
+  case "verify": x=e.name; break;
+  default:x=e; break;
+ }
+}
+
+setTimeout(function(){console.log("4.9",typeof x, x.name == x.message);}, 2);
+
+// Answers
+// 1. string false
+// 2. string true*
+// 3. undefined undefined
+// 4. object true
+})();
+
+// Question 4.10 try catch
+(function(){
+var x=true;
+
+function xor(a,b) {
+  return ( a || b ) && !( a && b );
+}
+try{
+ if(Math.random()>0.5)x=xor(x,true);
+}
+finally{
+ if(Math.random()>0.5)x=xor(x,false);
+}
+
+setTimeout(function(){console.log("4.10",typeof x,x);}, 2);
+
+// Answers
+// 1. boolean false*
+// 2. boolean true*
+// 3. undefined undefined
+// 4. number 0
 })();
 
 
