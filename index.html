@@ -14,7 +14,7 @@ console.log("1. Objects, variables, scope");
 // Question 1.1
 (function(){
 var x = undefined || null;
-console.log(typeof x);
+console.log("1.1",typeof x);
 // Answers
 // 1. undefined
 // 2. null
@@ -24,7 +24,7 @@ console.log(typeof x);
 // Question 1.2
 (function(){
 var x = 1 + '2';
-console.log(typeof x);
+console.log("1.2",typeof x);
 // Answers
 // 1. number
 // 2. string *
@@ -35,7 +35,7 @@ console.log(typeof x);
 // Question 1.3
 (function(){
 var x="Hello JS".split(" ")[0].split("").reverse().join("");
-console.log(x);
+console.log("1.3",x);
 // Answers
 // 1. olleH SJ
 // 2. olleH *
@@ -48,7 +48,7 @@ var x = "Hello ";
 (function(x) {
   y = x;
 })("JS");
-console.log(x+y);
+console.log("1.4",x+y);
 // Answers
 // 1. Hello
 // 2. Hello JS *
@@ -58,7 +58,7 @@ console.log(x+y);
 // Question 1.5
 (function(){
 var x = 10, y = '10';
-console.log(x==y,x===y);
+console.log("1.5",x==y,x===y);
 // Answers
 // 1. false false
 // 2. true false *
@@ -69,7 +69,7 @@ console.log(x==y,x===y);
 // Question 1.6
 (function(){
 var x = null, y = undefined, z = false;
-console.log(x==y,z==x,z==y);
+console.log("1.6",x==y,z==x,z==y);
 // Answers
 // 1. false false false
 // 2. true false false *
@@ -80,7 +80,7 @@ console.log(x==y,z==x,z==y);
 // Question 1.7
 (function(){
 var x = 0, y = '', z = '0';
-console.log(x==y,z==x,z==y);
+console.log("1.7",x==y,z==x,z==y);
 // Answers
 // 1. false false false
 // 2. true false false
@@ -91,7 +91,7 @@ console.log(x==y,z==x,z==y);
 // Question 1.8
 (function(){
 var x = 0.1, y = 0.2, z = 0.3;
-console.log( ((x + y) == z),((x + y) === z) );
+console.log("1.8", ((x + y) == z),((x + y) === z) );
 // Answers
 // 1. false false *
 // 2. false true
@@ -104,7 +104,7 @@ console.log( ((x + y) == z),((x + y) === z) );
 var a=[0, '0', 1, null, false, undefined, '', NaN],b=[];
 for(var i=0; i<a.length; i++)
  if(a[i]){b.push(a[i]);}
-console.log(b);
+console.log("1.9",b);
 // Answers
 // 1. ["0"]
 // 2. ["0",1] *
@@ -116,7 +116,7 @@ console.log(b);
 (function(){
 x={}; x.name="x";
 y=window.x || null;
-console.log(y.name);
+console.log("1.10",y.name);
 // Answers
 // 1. null
 // 2. undefined
@@ -137,7 +137,7 @@ var a = {
     }
 }
 var b = Object.create(a);
-console.log( b.name == "a", b.getName() == "a");
+console.log("2.1", b.name == "a", b.getName() == "a");
 // Answers
 // 1. false false
 // 2. false true
@@ -148,7 +148,7 @@ console.log( b.name == "a", b.getName() == "a");
 // Question 2.2
 (function(){
 var f=function(object){return this.name}
-console.log(f({name:"Hero"})==="Hero",f.call({name:"Hero"})==="Hero",f.apply({name:"Hero"})==="Hero");
+console.log("2.2",f({name:"Hero"})==="Hero",f.call({name:"Hero"})==="Hero",f.apply({name:"Hero"})==="Hero");
 // Answers
 // 1. false false true
 // 2. false true true *
@@ -164,7 +164,7 @@ var x={name:"Hero"}
 f1(x);
 var y="Hero";
 f2(y);
-console.log(x.name=="Hero",y=="Hero");
+console.log("2.3",x.name=="Hero",y=="Hero");
 // Answers
 // 1. false false
 // 2. true false
@@ -179,7 +179,7 @@ function f3(s) {
   var args = Array.prototype.slice.call(arguments, 1);
   return args.reverse();
 }
-console.log(f3("a", "b", "c"));
+console.log("2.4",f3("a", "b", "c"));
 // Answers
 // 1. ["a","b","c"]
 // 2. ["b","c"]
@@ -194,7 +194,7 @@ function mult(x, y) {
   y = typeof y != 'undefined' ?  y : 1;
   return x*y;
 }
-console.log(mult(2),mult("3"),mult("2",2));
+console.log("2.5",mult(2),mult("3"),mult("2",2));
 // Answers
 // 1. 2,3,22
 // 2. 2,3,4 *
@@ -212,7 +212,7 @@ returnName();
 var y = returnName.bind(x);
 y();
 x.returnName = returnName;
-console.log(returnName()=="",y()=="Hero",x.returnName()=="Hero");
+console.log("2.6",returnName()=="",y()=="Hero",x.returnName()=="Hero");
 // Answers
 // 1. false false false
 // 2. true false false
@@ -226,7 +226,7 @@ console.log(returnName()=="",y()=="Hero",x.returnName()=="Hero");
 var sf = Array.prototype.slice;
 var x = [1,2,3];
 
-console.log(sf.call(x,0,3)==x, sf.call(x,0,3).toString()==x.toString());
+console.log("2.7",sf.call(x,0,3)==x, sf.call(x,0,3).toString()==x.toString());
 // Answers
 // 1. false false
 // 2. true false
@@ -246,7 +246,7 @@ var returnName = function (s) {
 
 var boundName = returnName.bind(x);
 
-console.log(returnName(),boundName("!"));
+console.log("2.8",returnName(),boundName("!"));
 
 // Answers
 // 1. undefined Hero
@@ -262,7 +262,7 @@ function list() {
   return Array.prototype.slice.call(arguments);
 }
 var myList = list.bind(undefined, 0,1);
-console.log(myList(),myList(2, 3));
+console.log("2.9",myList(),myList(2, 3));
 // Answers
 // 1. undefined [2,3]
 // 2. [0,1] [2,3]
@@ -277,7 +277,7 @@ var x = new Object();
 x.name = 'Hero';
 x.age = function(){return 33;};
 delete x.name;
-console.log(x.hasOwnProperty('name'),x.hasOwnProperty('age'),x.hasOwnProperty('id'));
+console.log("2.10",x.hasOwnProperty('name'),x.hasOwnProperty('age'),x.hasOwnProperty('id'));
 // Answers
 // 1. false false false
 // 2. false true false *
