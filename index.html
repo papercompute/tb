@@ -720,6 +720,89 @@ setTimeout(function(){console.log("4.10",typeof x,x);}, 2);
 })();
 
 
+// 5. OOP
+console.log("5. OOP");
+
+// Question 5.1 constructor
+(function(){
+
+var x = function (name) {
+  this.name=name;
+};
+
+var x1 = new x("1");
+var x2 = new x(1);
+
+console.log("5.1",typeof x1==typeof x2,x1.name+x2.name);
+// Answers
+// 1. true 2
+// 2. true 11*
+// 3. false 11
+// 4. object 2
+})();
+
+
+// Question 5.2 prototype
+(function(){
+
+var x = function (name) {
+  this.name=name;
+};
+
+x.prototype.name="Pilot";
+x.prototype.getName=function(){return this.name}
+x.getName=function(){return "Hero"}
+
+var x1 = new x("alpha");
+var x2 = new x(true);
+
+console.log("5.2",typeof x1===typeof x2,x.getName()+" "+x2.getName());
+// Answers
+// 1. true alpha true
+// 2. true Hero true*
+// 3. false Pilot true
+// 4. false Hero false
+})();
+
+
+// Question 5.3 prototype
+(function(){
+
+var x = function (name) {
+  this.name = name;
+};
+
+x.prototype.getName = function() {  return this.name };
+
+var x1 = new x("1");
+var x2 = new x("2");
+var xF = x2.getName;
+
+console.log("5.3",xF === x1.getName,x.prototype == x2.prototype);
+
+// Answers
+// 1. true true
+// 2. true false*
+// 3. false true
+// 4. not 1-3
+})();
+
+// Question 5.4 prototype
+(function(){
+
+var x = {};
+
+
+console.log("5.4",x.constructor);
+
+// Answers
+// 1. true true
+// 2. true false*
+// 3. false true
+// 4. not 1-3
+})();
+
+
 </script>
 </html>
 
